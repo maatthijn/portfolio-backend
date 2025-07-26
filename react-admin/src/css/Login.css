@@ -1,0 +1,123 @@
+@import url('./index.css');
+
+#login-content {
+  background-image: url("../assets/old_bg.png");
+
+}
+
+.login-container {
+  text-align: center;
+  width: 100%;
+  max-width: 720px;
+  margin: 20px auto;
+  padding: 10vh 2.5vw;
+  color: #ffffff;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(19px);
+  -webkit-backdrop-filter: blur(19px);
+  box-shadow:
+    inset 0 9px 32px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(0, 0, 0, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 42px 21px rgba(0, 0, 0, 0.2),
+    0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+#login-instruction {
+  font-size: medium;
+}
+
+#salut {
+  font-family: 'Mrs Saint Delafield';
+  letter-spacing: 0;
+  color: #f4afc2;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, .5);
+}
+
+.login-form {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding: 0 3vw;
+}
+
+.login-form input::placeholder,
+.login-form textarea::placeholder {
+  color: #aaa;
+}
+
+.login-form button {
+  padding: 14px;
+  border: none;
+  background-color: #f4afc2;
+  color: #140f10;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.6s ease;
+}
+
+.login-form button:hover {
+  background-color: #ffffff;
+  color: #f4afc2;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, .5);
+}
+
+.login-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.login-content label {
+  width: 30%;
+  margin-right: 2px;
+  font-weight: bold;
+  color: #f4afc2;
+}
+
+.login-content input,
+.login-content textarea {
+  flex: 1;
+  width: 50%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+textarea {
+  resize: none;
+}
+
+@media (max-width: 992px) {
+  #my-name {
+    font-size: 6vw;
+  }
+
+  #salut {
+    font-size: 9vw;
+  }
+
+  .login-container {
+    padding: 7.5vh 5vw;
+  }
+
+  .login-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .login-content label {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .login-content input,
+  .login-content textarea {
+    width: 100%;
+  }
+}

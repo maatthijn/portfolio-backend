@@ -1,0 +1,86 @@
+/* Font used: Nunito Sans and Monsieur La Doulaise from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+.seq-anim {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.seq-anim-run {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0 !important;
+}
+
+.interaction-blocker {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: transparent;
+  pointer-events: all;
+}
+
+html {
+  background-color: #060713;
+  user-select: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: 'Nunito Sans';
+  color: white;
+}
+
+#root {
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vw;
+}
+
+.page-root {
+  top: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.content-p {
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #f4afc2;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, .5);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  body {
+    overflow-x: hidden;
+    font-size: 4vw;
+  }
+
+  .contents {
+    padding: 5vh 8vw !important;
+    font-size: 4vw !important;
+  }
+}

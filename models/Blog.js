@@ -15,7 +15,11 @@ const blogSchema = new mongoose.Schema({
     paragraphs: {
         type: [String],
         default: []
-    }
+    },
+    published: {
+        type: Boolean,
+        default: false
+    }    
 });
 
 module.exports = mongoose.model('Blog', blogSchema);

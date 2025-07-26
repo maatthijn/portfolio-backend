@@ -1,0 +1,426 @@
+@import url('index.css');
+
+#galleries-content {
+    background-image: url("../assets/old_bg.png");
+    font-size: 1.25vw;
+    min-height: 100vh !important;
+    padding: 10vh 5%;
+}
+
+.image-container {
+    text-align: center;
+    max-width: 1080px;
+    margin: 20px auto;
+    padding: 10vh 2.5%;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(19px);
+    -webkit-backdrop-filter: blur(19px);
+    box-shadow:
+        inset 0 9px 32px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(0, 0, 0, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 42px 21px rgba(0, 0, 0, 0.2),
+        0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+.image-maintenance-container {
+    background: rgba(0, 0, 0, 0);
+    box-shadow:
+        inset 0 9px 32px rgba(255, 255, 255, 0),
+        inset 0 1px 0 rgba(0, 0, 0, 0),
+        inset 0 -1px 0 rgba(0, 0, 0, 0),
+        inset 0 0 42px 21px rgba(0, 0, 0, 0),
+        0 10px 35px rgba(0, 0, 0, 0.6);
+    display: block;
+    width: 50vw;
+    padding: 5vh 2.5%
+}
+
+#galleries-salut {
+    font-weight: 300;
+    font-size: calc(1.475rem + 2.7vw);
+    text-align: center;
+}
+
+#galleries-instruction {
+    margin-bottom: 1rem;
+}
+
+#galleries-create-new {
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.blog-option {
+    padding: 0 5vw;
+}
+
+.image-container button {
+    padding: 14px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+
+.image-container button:hover {
+    background-color: #ffffff;
+    color: #f4afc2;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, .5);
+}
+
+.no-caret::after {
+    display: none !important;
+}
+
+@media (max-width: 992px) {
+    .image-container {
+        padding: 7.5vh 5vw;
+    }
+
+    .image-maintenance-container {
+        width: 90vw;
+        padding: 3vh 5vw;
+    }
+
+    #galleries-content {
+        padding: 5vh 3vw !important;
+        ;
+    }
+}
+
+/* Blog fetching */
+
+.blog-table {
+    --bs-table-color: #d5d5d5;
+    --bs-table-striped-color: #ffffff;
+    --bs-table-bg: rgb(0, 0, 0, .2);
+    --bs-table-striped-bg: rgb(0, 0, 0, .3);
+    --bs-table-border-color: rgb(0, 0, 0, .3);
+}
+
+.blog-table-title {
+    text-align: left;
+    max-width: 30vw;
+}
+
+.blog-maintain-option * {
+    padding: 0 .5vw;
+    transition: color .5s, text-shadow .5s;
+}
+
+.blog-maintain-option *:hover {
+    cursor: pointer;
+    color: #f4afc2;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, .5);
+}
+
+/* Blog offcanvas */
+
+.blog-offcanvas-end {
+    --bs-offcanvas-width: 50vw;
+    transition: transform .8s;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        inset 0 9px 32px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(0, 0, 0, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 42px 21px rgba(0, 0, 0, 0.2),
+        0 50px 35px rgba(0, 0, 0, 0.4);
+}
+
+.blog-offcanvas-header {
+    display: block;
+    padding: 2rem 5rem 0 3rem;
+    color: #ffffff;
+}
+
+#blog-title {
+    font-family: 'Mrs Saint Delafield';
+    letter-spacing: 0;
+    color: #f4afc2;
+    font-size: 2.5rem;
+}
+
+
+.blog-offcanvas-body {
+    padding: 1rem 5rem 1rem 3rem;
+    color: #ffffff;
+    font-size: 1.25rem;
+}
+
+.offcanvas {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transform: translateX(100%) !important;
+}
+
+@media (max-width: 992px) {
+    .blog-offcanvas-end {
+        width: 100vw !important;
+    }
+
+    .blog-offcanvas-header {
+        padding: 4vh 20vw 0 8vw !important;
+    }
+
+    .blog-offcanvas-body {
+        padding: 0 8vw 3vh 8vw !important;
+        font-size: 4vw;
+    }
+}
+
+.fade-in-modal {
+    opacity: 1 !important;
+    transition: opacity .3s ease-in;
+}
+
+.fade-out-modal {
+    opacity: 0 !important;
+    transition: opacity .3s ease-out;
+}
+
+.custom-modal {
+    backdrop-filter: blur(19px);
+    position: fixed;
+    display: flex;
+    z-index: 1080;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.modal-image {
+    margin: auto;
+    max-width: 95%;
+    max-height: 95%;
+    padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Blog Maintenance */
+.image-form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 0 3vw;
+}
+
+.image-form input::placeholder,
+.image-form textarea::placeholder {
+    color: #aaa;
+}
+
+.image-form-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.image-form-content label {
+    width: 30%;
+    margin-right: 2px;
+    font-weight: bold;
+    color: #f4afc2;
+}
+
+.image-form-content input,
+.image-form-content textarea {
+    flex: 1;
+    width: 50%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.image-form-content textarea {
+    height: 20vh;
+}
+
+.image-pic-input {
+    display: block;
+}
+
+@media (max-width: 992px) {
+    .image-form-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .image-form-content label {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .image-form-content input,
+    .image-form-content textarea {
+        width: 100%;
+    }
+
+    .image-form-content textarea {
+        height: 50vh;
+    }
+}
+
+#image-maintenance-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0;
+}
+
+#image-maintenance-submit {
+    background-color: #f4afc2;
+    color: white;
+}
+
+.delete-button {
+    background-color: rgba(255, 0, 0, .7) !important;
+    color: white !important;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.modal-set-button * {
+    margin: 0 2vw;
+}
+
+.custom-alert {
+    width: 50vw;
+    margin: 10vh auto;
+    transition: 0.5s ease;
+    opacity: .95;
+    border: 0;
+    z-index: 9999;
+}
+
+.alert-success {
+    background-color: #f4afc2;
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, .7);
+    color: white;
+}
+
+.pink-text {
+    color: #f4afc2;
+    font-weight: 800;
+}
+
+/* Galleries */
+.masonry {
+    column-count: 3;
+    column-gap: 0;
+}
+
+.img-hover-zoom {
+    overflow: hidden;
+    border-radius: 1vw;
+    margin: 0 0 1vw 1vw;
+
+}
+
+.img-hover-zoom:hover .img-image {
+    transform: scale(1.25);
+    filter: grayscale(0%);
+    opacity: 1 !important;
+}
+
+.img-image {
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    width: 100%;
+    transition: 1s ease;
+    margin-bottom: 0 !important;
+    filter: grayscale(100%);
+    opacity: 0;
+    display: flex;
+    transform: translateY(25px);
+}
+
+.img-image.visible {
+    opacity: 0.3;
+    transform: translateY(0);
+}
+
+.image-row {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+    padding-right: .5vw;
+    padding-left: .5vw;
+}
+
+.img-container {
+    position: relative;
+}
+
+.img-draft-action {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.img-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.img-container:hover .img-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.img-actions i {
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 3vw;
+    height: 3vw;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .img-actions i {
+        width: 6vw;
+        height: 6vw;
+        font-size: 3vw;
+    }
+}
+
+.img-actions i:hover {
+    background: rgba(244, 175, 194, 0.8);
+}
+
+.image-draft-label {
+    font-size: 3vw;
+}

@@ -13,12 +13,22 @@ There are several instruments that I'd like to enhance it with back-end:
 
 ## What's New?
 
+### v1.2
+This is a massive update because I refused to deploy every minor update until I fully finish my admin site. Here are points of the updates:
+
+1. Created an admin page to maintain my contents.
+2. Optimized serverless cold start by calling the server at "Home" section.
+3. Secured my admin site by implementing JWT protection.
+4. Automatically logged out when idling for too long (15 minutes) or exceeding 3 hours of logging in.
+5. Allowed admin to create a new content (blog/image) or manage an existing content, either edit or delete it.
+6. Enabled an action to draft a new or a published content.
+
+## Logs
+
 ### v1.1
 1. Added Vercel deployment to the site.
 2. Fixed every problem with my blog fetching mechanism.
 3. Added a script to fetch galleries from database (which stores URLs from Cloudinary).
-
-## Logs
 
 ### v1.0
 1. Added a script to fetch blogs from database.
