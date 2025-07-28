@@ -19,12 +19,12 @@ export default function Galleries() {
     const [textareaValue, setTextareaValue] = useState("");
 
     // Mobile checking
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
     const [disableClicks, setDisableClicks] = useState(isMobile);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setIsMobile(window.innerWidth <= 992);
         };
 
         // Add event listener

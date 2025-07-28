@@ -27,7 +27,7 @@ export default function Login() {
             setPasswordAttempt(data.attemptsLeft);
             setShowWarning(true);
         } else {
-            fetch('http://localhost:5000/api/ping').catch(() => {});
+            fetch('/api/ping').catch(() => {});
             localStorage.setItem("token", data.token);
             handleNavClick(e, "/menu");
         }
