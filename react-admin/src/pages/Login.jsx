@@ -6,7 +6,10 @@ export default function Login() {
     const { handleNavClick } = useOutletContext();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
+    const [passwordAttempts, setPasswordAttempt] = useState(null);
+    const [lockedUntil, setLockedUntil] = useState(null);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,18 +20,44 @@ export default function Login() {
         });
 
         const data = await res.json();
-        if (res.ok) {
-            fetch('http://localhost:5000/api/ping').catch(() => { });
+        if (res.status === 429 && data.locked) {
+            setShowWarning(true);
+            setLockedUntil(data.lockedUntil);
+        } else if (res.status === 401) {
+            setPasswordAttempt(data.attemptsLeft);
+            setShowWarning(true);
+        } else {
+            fetch('http://localhost:5000/api/ping').catch(() => {});
             localStorage.setItem("token", data.token);
             handleNavClick(e, "/menu");
-        } else {
-            alert("Login failed.");
         }
     };
 
     useEffect(() => {
         document.title = "Login | HAFIDH MAULANA MATIN";
-    });
+    }, []);
+
+    useEffect(() => {
+        if (!lockedUntil) return;
+
+        const updateTimeLeft = () => {
+            const diff = lockedUntil - Date.now();
+            setTimeLeft(diff > 0 ? diff : 0);
+        };
+
+        updateTimeLeft();
+        const interval = setInterval(updateTimeLeft, 1000);
+        return () => clearInterval(interval);
+    }, [lockedUntil]);
+
+    useEffect(() => {
+        if (!lockedUntil || timeLeft > 0) return;
+        const timeout = setTimeout(() => {
+            setLockedUntil(null);
+            setShowWarning(false);
+        }, 1000);
+        return () => clearTimeout(timeout);
+    }, [timeLeft, lockedUntil]);
 
     return (
         <div id="login-content" className="page-root contents d-flex flex-column min-vh-100 min-vw-100 justify-content-center align-items-center">
@@ -48,16 +77,25 @@ export default function Login() {
                     <div className="login-content seq-anim">
                         <label>Password</label>
                         <input
-                            type={showPassword ? "text" : "password"}
+                            type={"password"}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             autoComplete="off"
                             required
                         />
                     </div>
-                    <button type="submit" className="seq-anim">Login</button>
+                    {showWarning && (
+                        <h1 id="wrong-password" className="display-6 seq-anim">
+                            {lockedUntil
+                                ? `Your login access is locked. Try again in ${!(timeLeft < 60000) ? (`${Math.floor(timeLeft / 60000)}m`) : ""} ${Math.floor((timeLeft % 60000) / 1000)}s.`
+                                : `Login failed. ${passwordAttempts} attempts left.`}
+                        </h1>
+                    )}
+                    <button type="submit" className="seq-anim" disabled={!!lockedUntil}>
+                        Login
+                    </button>
                 </form>
             </div>
         </div>
-    )
+    );
 }

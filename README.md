@@ -13,6 +13,14 @@ There are several instruments that I'd like to enhance it with back-end:
 
 ## What's New?
 
+### v1.2.1
+1. Created an email service API for front-end site.
+2. Protected admin site by using brute-force protection.
+3. A login-attempt-left warning will show when user enters a wrong identity.
+4. Enhanced mobile galleries maintenance to avoid listening to delete or edit image when clicking on an image for the first time.
+
+## Logs
+
 ### v1.2
 This is a massive update because I refused to deploy every minor update until I fully finish my admin site. Here are points of the updates:
 
@@ -22,8 +30,6 @@ This is a massive update because I refused to deploy every minor update until I 
 4. Automatically logged out when idling for too long (15 minutes) or exceeding 3 hours of logging in.
 5. Allowed admin to create a new content (blog/image) or manage an existing content, either edit or delete it.
 6. Enabled an action to draft a new or a published content.
-
-## Logs
 
 ### v1.1
 1. Added Vercel deployment to the site.

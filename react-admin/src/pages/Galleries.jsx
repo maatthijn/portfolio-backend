@@ -9,7 +9,6 @@ export default function Galleries() {
     const [isFadingOut, setIsFadingOut] = useState(false);
     const [isFadeInActive, setIsFadeInActive] = useState(false);
     const [modalRender, setModalRender] = useState(false);
-    const [disableClicks, setDisableClicks] = useState(false);
     const [imageEdit, setImageEdit] = useState(false);
     const [imageData, setImageData] = useState([]);
     const [originalImageData, setOriginalImageData] = useState([]);
@@ -18,6 +17,24 @@ export default function Galleries() {
     const [imageDescription, setImageDescription] = useState([]);
     const [imageFile, setImageFile] = useState(null);
     const [textareaValue, setTextareaValue] = useState("");
+
+    // Mobile checking
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [disableClicks, setDisableClicks] = useState(isMobile);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+
+        // Clean up listener on unmount
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     // Image section
     const [images, setImages] = useState([]);
@@ -81,10 +98,16 @@ export default function Galleries() {
     const bodyRef = useRef(null);
     const delModalRef = useRef(null);
 
+    const handleImageClick = async () => {
+        setDisableClicks(true);
+        await new Promise((res) => setTimeout(res, 100));
+        setDisableClicks(false);
+    }
+
     const handleImageModal = (src) => {
         setModalRender(true);
-        setDisableClicks(true);
         setIsFadingOut(false);
+        if (isMobile) {setDisableClicks(true)};
         if (Array.isArray(src) && src.length === 0) {
             setImageEdit(false);
             setImageData(null);
@@ -148,9 +171,9 @@ export default function Galleries() {
     const closeModal = () => {
         setIsFadingOut(true);
         setIsFadeInActive(false);
+        if (isMobile) {setDisableClicks(true)};
         setTimeout(() => {
             setModalRender(false);
-            setDisableClicks(false);
         }, 600);
     };
 
@@ -327,8 +350,6 @@ export default function Galleries() {
             html.style.paddingRight = '';
         };
     }, [modalRender]);
-    const [hoveredImageId, setHoveredImageId] = useState(null);
-    const [pointerEnabledImageId, setPointerEnabledImageId] = useState(null);
 
     // Structures
     return (
@@ -344,9 +365,6 @@ export default function Galleries() {
                     <div className="seq-anim">
                         <div id="galleries-create-new">
                             <button
-                                style={{
-                                    pointerEvents: disableClicks ? "none" : "auto",
-                                }}
                                 onClick={() => { handleImageModal([]) }}
                                 onContextMenu={(e) => e.preventDefault()}
                             >Add an Image</button>
@@ -354,7 +372,10 @@ export default function Galleries() {
                         <div className="masonry seq-anim">
                             {images.map((image, index) => (
                                 <div key={index} className="img-hover-zoom">
-                                    <div className="img-container">
+                                    <div
+                                        className="img-container"
+                                        onClick={isMobile ? handleImageClick : null}
+                                    >
                                         <img
                                             key={index}
                                             src={image.url}
@@ -371,14 +392,21 @@ export default function Galleries() {
                                                     className="bi bi-pencil-fill"
                                                     title={`Edit "${image.name}"`}
                                                     onClick={() => {
-                                                        handleImageModal(image)
+                                                        if (!disableClicks) {
+                                                            handleImageModal(image);
+                                                        }
                                                     }}
                                                     onContextMenu={(e) => e.preventDefault()}
+                                                    style={{ pointerEvents: disableClicks ? "none !important" : "auto" }}
                                                 ></i>
                                                 <i
                                                     className="bi bi-trash3-fill"
                                                     title={`Delete "${image.name}"`}
-                                                    onClick={() => handleDeleteClick(image)}
+                                                    onClick={() => {
+                                                        if (!disableClicks) {
+                                                            handleDeleteClick(image)
+                                                        }
+                                                    }}
                                                     onContextMenu={(e) => e.preventDefault()}
                                                 ></i>
                                             </div>
