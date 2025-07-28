@@ -24,6 +24,18 @@
       "dest": "/react-admin/dist/$1"
     },
     {
+      "src": "/manifest.json",
+      "dest": "/react-admin/dist/manifest.json"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/react-admin/dist/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/react-admin/dist/logo512.png"
+    },
+    {
       "src": "/(.*)",
       "dest": "/react-admin/dist/index.html"
     }
